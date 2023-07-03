@@ -1,0 +1,14 @@
+.review-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .review-item {
+    margin-bottom: 20px;
+  }
+  
+  .review-rectangle {
+    background-color: #dedede;
+    border: 1px solid darkgrey;
+    padding: 10px;
+  }
