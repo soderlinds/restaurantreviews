@@ -5,10 +5,6 @@ const Web3 = require('web3');
 const config = require('./config');
 const reviewRoutes = require('./routes/reviewRoutes');
 const qrRoutes = require('./routes/qrRoutes');
-
-app.use('/api', reviewRoutes(contractInstance));
-app.use('/api', qrRoutes(contractInstance));
-
 app.use(cors());
 app.use(express.json());
 
@@ -23,6 +19,11 @@ const contractABI = config.contractABI;
 const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
 
 app.use('/api', reviewRoutes(contractInstance));
+
+app.use('/api', reviewRoutes(contractInstance));
+app.use('/api', qrRoutes(contractInstance));
+
+
 
 const PORT = process.env.PORT || 5000;
 

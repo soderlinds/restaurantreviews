@@ -1,38 +1,14 @@
-import React, { useState } from 'react';
-import { QrReader } from 'react-qr-reader';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const QRCodeScanner = ({ onScan, onSubmitReview }) => {
-  const [error, setError] = useState(null);
-
-  const handleScan = (data) => {
-    if (data) {
-      try {
-        const reviewData = JSON.parse(data);
-        onScan(data);
-        onSubmitReview();
-      } catch (error) {
-        setError('Invalid QR code');
-      }
-    }
-  };
-
-  const handleError = (err) => {
-    console.error(err);
-    setError('Failed to scan QR code');
-  };
-
+const QRCodeScanner = ({ reviewData }) => {
   return (
     <div>
-      <h3>Scan the QR code to submit your review</h3>
-      <div className="qr-scanner">
-        <QrReader
-          delay={300}
-          onError={handleError}
-          onScan={handleScan}
-          style={{ width: '100%' }}
-        />
-      </div>
-      {error && <p className="error-message">{error}</p>}
+      <h2>Scan QR Code</h2>
+      <p>Simulate a QR code scan by clicking the button below:</p>
+      <Link to={{ pathname: '/submit-review', state: { reviewData } }}>
+        <button>Scan QR Code</button>
+      </Link>
     </div>
   );
 };

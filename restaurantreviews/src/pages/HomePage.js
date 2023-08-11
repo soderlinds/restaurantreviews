@@ -17,7 +17,7 @@ const HomePage = () => {
   };
 
   const foodInfo = {
-    cuisine: 'Italian',
+    cuisine: 'Grill and Lounge',
     openingHours: 'Mon-Sat: 10am-10pm',
     // Add more information about food
   };
