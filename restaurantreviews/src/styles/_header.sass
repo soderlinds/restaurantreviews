@@ -1,0 +1,34 @@
+@import './_colors'
+@import '_mediaqueries'
+
+.header 
+    background-image: url("../images/logo.png")
+    padding: 2rem
+    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1)
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+
+  
+.logotypeLink 
+    margin-right: 4rem
+    text-decoration: none
+    color: #556257
+    font-size: 2.5rem
+
+.search-bar input[type='text'] 
+    margin-left: 4rem
+    width: 100%
+    padding: 1rem
+    font-size: 1rem
+    border: 0.1rem solid #ccc
+    border-radius: 0.4rem
+    box-sizing: border-box
+
+    @include for-phone-only
+      margin-left: 1rem
+
+.backArrow
+    width: 2.5rem
+
+  

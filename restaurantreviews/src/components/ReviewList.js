@@ -1,24 +1,8 @@
-import './ReviewList.css'; 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import '../styles/_reviewlist.sass';
+import '../styles/_typography.sass';
 
-const ReviewList = ({ reviews }) => {
-  const [averageRating, setAverageRating] = useState(0);
-
-  useEffect(() => {
-    calculateAverageRating();
-  }, [reviews]);
-
-  const calculateAverageRating = () => {
-    if (reviews.length === 0) {
-      setAverageRating(0);
-      return;
-    }
-
-    const totalRating = reviews.reduce((sum, review) => sum + parseInt(review.rating), 0);
-    const averageRating = totalRating / reviews.length;
-    setAverageRating(averageRating.toFixed(2));
-  };
-
+const ReviewList = ({ reviews, averageRating }) => {
   const renderRatingDots = (rating) => {
     const maxRating = 5;
     const filledDots = Math.floor(rating);
@@ -64,32 +48,31 @@ const ReviewList = ({ reviews }) => {
     return ratingDots;
   };
 
-  if (reviews.length === 0) {
-    return <p>No reviews available</p>;
-  }
-
   return (
     <div>
-      <h2>Reviews</h2>
       <div>
-        <p>Average Rating: {renderRatingDots(averageRating)}</p>
+        <p className="reviewText">Average Rating: {renderRatingDots(parseFloat(averageRating))}</p>
+        <p className="reviewText">Total Reviews: {reviews.length}</p>
       </div>
       <ul className="review-list">
-        {reviews.map((review, index) => (
-          <li key={index} className="review-item">
-            <div className="review-rectangle">
-              <p>
-                {review.title}{' '}
-                 <span style={{ marginLeft: '15px' }}>{renderRatingDots(review.rating)}</span>
+        {reviews.length === 0 ? (
+          <li>No reviews available</li>
+        ) : (
+          reviews.map((review, index) => (
+            <li key={index} className="review-item">
+              <div className="review-rectangle">
+                <p className="reviewText">
+                  {review.title}{' '}
+                  <span style={{ marginLeft: '15px' }}>{renderRatingDots(review.rating)}</span>
                 </p>
-              <p>{review.reviewText}</p>
-            </div>
-          </li>
-        ))}
+                <p className="reviewText">{review.reviewText}</p>
+              </div>
+            </li>
+          ))
+        )}
       </ul>
     </div>
   );
 };
 
 export default ReviewList;
-
